@@ -16,6 +16,6 @@ fruits_list = pd.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw
 fruits_list.set_index('Fruit')
 
 selected_fruits = streamlit.multiselect("Select some fruits: ", list(fruits_list['Fruit']), ['Avocado', 'Strawberries'])
-fruits_to_show = fruits_list.loc[list(selected_fruits)]
+# fruits_to_show = fruits_list.loc[list(selected_fruits)]
 
-streamlit.dataframe(fruits_to_show if fruits_to_show.shape[0] > 0 else fruits_list)
+streamlit.dataframe(selected_fruits)

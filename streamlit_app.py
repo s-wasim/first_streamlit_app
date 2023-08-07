@@ -13,9 +13,8 @@ streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
 
 fruits_list = pd.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt')
-fruits_list.set_index('Fruit')
+fruits_list.set_index('Fruit', inplace=True)
 
 selected_fruits = streamlit.multiselect("Select some fruits: ", list(fruits_list['Fruit']), ['Avocado', 'Strawberries'])
-# fruits_to_show = fruits_list.loc[list(selected_fruits)]
 
 streamlit.dataframe(selected_fruits)

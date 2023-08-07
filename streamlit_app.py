@@ -18,4 +18,4 @@ fruits_list.set_index('Fruit')
 selected_fruits = streamlit.multiselect("Select some fruits: ", list(fruits_list['Fruit']))
 fruits_to_show = fruits_list.loc[selected_fruits]
 
-streamlit.dataframe(fruits_to_show)
+streamlit.dataframe(fruits_to_show if fruits_to_show.shape[0] > 0 else fruits_list)

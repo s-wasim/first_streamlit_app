@@ -15,6 +15,6 @@ streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 fruits_list = pd.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt')
 fruits_list.set_index('Fruit', inplace=True)
 
+selected_fruits = fruits_list.loc[list(fruits_list)]
 
-
-streamlit.dataframe(fruits_list['Fruit'])
+streamlit.dataframe(selected_fruits)

@@ -17,4 +17,4 @@ fruits_list.set_index('Fruit', inplace=True)
 
 
 
-streamlit.dataframe(fruits_list)
+streamlit.dataframe(fruits_list['Fruit'])

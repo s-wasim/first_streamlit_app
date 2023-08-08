@@ -21,4 +21,4 @@ streamlit.dataframe(fruits_to_show if len(fruits_to_show) > 0 else fruits_list)
 
 streamlit.header('Fruityvice Fruit Advice!')
 response_advice = requests.get('https://www.fruityvice.com/api/fruit/watermelon')
-streamlit.dataframe(pd.json_normalize(response_advice.json()))
+streamlit.dataframe(pd.json_normalize(response_advice.json()).set_index('name'))

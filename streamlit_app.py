@@ -25,10 +25,9 @@ streamlit.header('Fruityvice Fruit Advice!')
 advice_fruit = streamlit.text_input('What food would you like information about?: ')
 try:
     response_advice = requests.get(f"https://www.fruityvice.com/api/fruit/{advice_fruit if len(advice_fruit) > 0 else 'watermelon'}")
+    streamlit.dataframe(pd.json_normalize(response_advice.json()).set_index('name'))
 except URLError as e:
-    streamlit.error('Invalid fruitname')
-streamlit.dataframe(pd.json_normalize(response_advice.json()).set_index('name'))
-
+    streamlit.error(e)
 
 streamlit.stop()
 # Getting data from SF

@@ -22,8 +22,8 @@ fruits_to_show = fruits_list.loc[list(selected_fruits)]
 streamlit.dataframe(fruits_to_show if len(fruits_to_show) > 0 else fruits_list)
 
 streamlit.header('Fruityvice Fruit Advice!')
-advice_fruit = streamlit.multiselect('What food would you like information about?: ', list(fruits_list['Fruit']))
-response_advice = requests.get(f'https://www.fruityvice.com/api/fruit/{advice_fruit}')
+advice_fruit = streamlit.text_input('What food would you like information about?: ')
+response_advice = requests.get(f"https://www.fruityvice.com/api/fruit/{advice_fruit if len(advice_fruit) > 0 else 'watermelon'}")
 streamlit.dataframe(pd.json_normalize(response_advice.json()).set_index('name'))
 
 

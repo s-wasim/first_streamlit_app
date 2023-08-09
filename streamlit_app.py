@@ -29,7 +29,6 @@ try:
 except URLError as e:
     streamlit.error(e)
 
-streamlit.stop()
 # Getting data from SF
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()

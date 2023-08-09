@@ -23,3 +23,12 @@ streamlit.dataframe(fruits_to_show if len(fruits_to_show) > 0 else fruits_list)
 streamlit.header('Fruityvice Fruit Advice!')
 response_advice = requests.get('https://www.fruityvice.com/api/fruit/watermelon')
 streamlit.dataframe(pd.json_normalize(response_advice.json()).set_index('name'))
+
+
+# Getting data from SF
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetchone()
+streamlit.text("Hello from Snowflake:")
+streamlit.text(my_data_row)

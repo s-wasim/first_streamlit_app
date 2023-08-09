@@ -23,7 +23,6 @@ streamlit.dataframe(fruits_to_show if len(fruits_to_show) > 0 else fruits_list)
 streamlit.header('Fruityvice Fruit Advice!')
 # Appending data to SF
 new_fruit = streamlit.text_input(label='Add fruits: ')
-
 response_advice = requests.get('https://www.fruityvice.com/api/fruit/watermelon')
 streamlit.dataframe(pd.json_normalize(response_advice.json()).set_index('name'))
 
@@ -31,6 +30,7 @@ streamlit.dataframe(pd.json_normalize(response_advice.json()).set_index('name'))
 # Getting data from SF
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
+my_cur.execute(f"INSERT INTO PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST VALUES ('{new_fruit}')")
 my_cur.execute('SELECT FRUIT_NAME FROM PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST')
 res_set = my_cur.fetchall()
 streamlit.dataframe(res_set)
